@@ -7,6 +7,10 @@
     scroll-behavior: smooth;
   }
   
+  section {
+    scroll-margin-top: 5rem;
+  }
+
   main > :first-child {
     margin-top: 0 !important;
   }

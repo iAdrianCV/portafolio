@@ -12,3 +12,25 @@
 .animate-fadeIn {
   animation: fadeIn 0.2s ease-out forwards;
 }
+
+/* Navigation pill animation & micro-interactions */
+.nav-link-pill {
+  position: relative;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+}
+
+.nav-link-pill:hover {
+  transform: translateY(-1px);
+}
+
+.nav-link-pill:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.nav-link-pill.active {
+  background-color: #e5eeff;
+  color: #004ac6;
+  font-weight: 500;
+  box-shadow: 0 1px 3px rgba(0, 74, 198, 0.08);
+}

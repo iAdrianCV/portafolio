@@ -1,4 +1,4 @@
-import { Component, signal, computed } from '@angular/core';
+import { Component, signal, computed, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -51,6 +51,7 @@ export class App {
   readonly copiedEmail = signal<boolean>(false);
   readonly isContactModalOpen = signal<boolean>(false);
   readonly contactFormSent = signal<boolean>(false);
+  readonly activeSection = signal<string>('proyectos');
 
   // Profile data
   readonly profile = {
@@ -351,6 +352,48 @@ export class App {
   // Methods
   filterTech(category: TechCategory): void {
     this.selectedCategory.set(category);
+  }
+
+  @HostListener('window:scroll')
+  onWindowScroll(): void {
+    if (typeof window === 'undefined') return;
+    const sections = ['proyectos', 'trayectoria', 'stack'];
+    const scrollPos = window.scrollY + 180;
+
+    for (const sectionId of sections) {
+      const el = document.getElementById(sectionId);
+      if (el) {
+        const top = el.offsetTop;
+        const height = el.offsetHeight;
+        if (scrollPos >= top && scrollPos < top + height) {
+          this.activeSection.set(sectionId);
+          return;
+        }
+      }
+    }
+
+    if (window.scrollY < 250) {
+      this.activeSection.set('proyectos');
+    }
+  }
+
+  scrollToSection(sectionId: string, event?: Event): void {
+    if (event) {
+      event.preventDefault();
+    }
+    this.activeSection.set(sectionId);
+    this.closeMobileMenu();
+
+    const el = document.getElementById(sectionId);
+    if (el) {
+      const headerOffset = 76;
+      const elementPosition = el.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
   }
 
   toggleMobileMenu(): void {

@@ -14,21 +14,33 @@
     </div>
 
     <!-- Desktop Navigation -->
-    <nav class="hidden md:flex items-center gap-space-xs">
+    <nav class="hidden md:flex items-center gap-space-xs" data-active-classes="bg-surface-container text-primary font-medium">
       <a
-        class="px-space-sm py-space-xs rounded-xl font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors"
+        (click)="scrollToSection('proyectos', $event)"
+        [attr.aria-current]="activeSection() === 'proyectos' ? 'page' : null"
+        [class]="activeSection() === 'proyectos'
+          ? 'nav-link-pill px-space-sm py-space-xs rounded-xl bg-surface-container text-primary font-medium shadow-xs cursor-pointer'
+          : 'nav-link-pill px-space-sm py-space-xs rounded-xl font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container hover:text-on-surface cursor-pointer'"
         href="#proyectos"
       >
         Proyectos
       </a>
       <a
-        class="px-space-sm py-space-xs rounded-xl font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors"
+        (click)="scrollToSection('trayectoria', $event)"
+        [attr.aria-current]="activeSection() === 'trayectoria' ? 'page' : null"
+        [class]="activeSection() === 'trayectoria'
+          ? 'nav-link-pill px-space-sm py-space-xs rounded-xl bg-surface-container text-primary font-medium shadow-xs cursor-pointer'
+          : 'nav-link-pill px-space-sm py-space-xs rounded-xl font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container hover:text-on-surface cursor-pointer'"
         href="#trayectoria"
       >
         Trayectoria
       </a>
       <a
-        class="px-space-sm py-space-xs rounded-xl font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors"
+        (click)="scrollToSection('stack', $event)"
+        [attr.aria-current]="activeSection() === 'stack' ? 'page' : null"
+        [class]="activeSection() === 'stack'
+          ? 'nav-link-pill px-space-sm py-space-xs rounded-xl bg-surface-container text-primary font-medium shadow-xs cursor-pointer'
+          : 'nav-link-pill px-space-sm py-space-xs rounded-xl font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container hover:text-on-surface cursor-pointer'"
         href="#stack"
       >
         Stack
@@ -65,28 +77,34 @@
     <div class="md:hidden bg-surface-container-lowest border-b border-outline-variant/30 px-6 py-4 shadow-lg animate-fadeIn">
       <nav class="flex flex-col gap-2">
         <a
-          (click)="closeMobileMenu()"
-          class="px-4 py-2.5 rounded-xl font-body-sm text-on-surface hover:bg-surface-container transition-colors flex items-center justify-between"
+          (click)="scrollToSection('proyectos', $event)"
+          [class]="activeSection() === 'proyectos'
+            ? 'px-4 py-2.5 rounded-xl font-body-sm font-medium bg-surface-container text-primary flex items-center justify-between transition-colors'
+            : 'px-4 py-2.5 rounded-xl font-body-sm text-on-surface hover:bg-surface-container transition-colors flex items-center justify-between'"
           href="#proyectos"
         >
           <span>Proyectos</span>
-          <span class="material-symbols-outlined text-[18px] text-tertiary">chevron_right</span>
+          <span class="material-symbols-outlined text-[18px]">chevron_right</span>
         </a>
         <a
-          (click)="closeMobileMenu()"
-          class="px-4 py-2.5 rounded-xl font-body-sm text-on-surface hover:bg-surface-container transition-colors flex items-center justify-between"
+          (click)="scrollToSection('trayectoria', $event)"
+          [class]="activeSection() === 'trayectoria'
+            ? 'px-4 py-2.5 rounded-xl font-body-sm font-medium bg-surface-container text-primary flex items-center justify-between transition-colors'
+            : 'px-4 py-2.5 rounded-xl font-body-sm text-on-surface hover:bg-surface-container transition-colors flex items-center justify-between'"
           href="#trayectoria"
         >
           <span>Trayectoria</span>
-          <span class="material-symbols-outlined text-[18px] text-tertiary">chevron_right</span>
+          <span class="material-symbols-outlined text-[18px]">chevron_right</span>
         </a>
         <a
-          (click)="closeMobileMenu()"
-          class="px-4 py-2.5 rounded-xl font-body-sm text-on-surface hover:bg-surface-container transition-colors flex items-center justify-between"
+          (click)="scrollToSection('stack', $event)"
+          [class]="activeSection() === 'stack'
+            ? 'px-4 py-2.5 rounded-xl font-body-sm font-medium bg-surface-container text-primary flex items-center justify-between transition-colors'
+            : 'px-4 py-2.5 rounded-xl font-body-sm text-on-surface hover:bg-surface-container transition-colors flex items-center justify-between'"
           href="#stack"
         >
           <span>Stack Técnico</span>
-          <span class="material-symbols-outlined text-[18px] text-tertiary">chevron_right</span>
+          <span class="material-symbols-outlined text-[18px]">chevron_right</span>
         </a>
         <button
           type="button"
